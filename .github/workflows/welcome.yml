@@ -1,18 +1,19 @@
-name: Welcome new contributors
+name: greet
 
 on:
-  pull_request_target:
+  pull_request:
     types: [opened]
+
+permissions:
+  pull-requests: write
 
 jobs:
   greet:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write  # Grant write permissions for pull request operations
     steps:
-      - name: Welcome message
-        uses: actions/first-interaction@v1
+      - uses: actions/first-interaction@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          pr-message: >
-            👋 Thanks for your first pull request! A maintainer will review it shortly.
+          issue-message: '👋 Thanks for opening your first issue!'
+          pr-message: '🎉 Thanks for your first pull request! A maintainer will review it shortly.'
+
